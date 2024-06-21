@@ -17,54 +17,54 @@
 
 Run the command on:
 
-```bash
+bash
 npm install
-```
 
 or just
 
-```bash
+bash
 npm i
-```
 
 ## Running the app
 
 ### watch mode
 
-```bash
+bash
 npm run start:dev
-```
 
 ### production mode
 
-```bash
+bash
 npm run start:prod
-```
 
 ## Test
 
 ### unit tests
 
-```bash
+bash
 npm run test
-```
 
 ### e2e tests
 
-```bash
+bash
 npm run test:e2e
-```
 
 ### test coverage
 
-```bash
+bash
 npm run test:cov
-```
 
 ## Dependencies to install
 
 Run the command to install necessary dependencies:
 
-```bash
-npm i npm i @colors/colors @nestjs/mongoose mongoose joi axios class-validator class-transform class-transformer
-```
+bash
+npm i @nestjs/mongoose mongoose joi axios class-validator class-transform class-transformer
+
+## Postman
+
+You have to make a GET request to the following address: `http://localhost:3000/api/users/id`
+
+## .env
+
+copy the .env.template file and rename it to .env

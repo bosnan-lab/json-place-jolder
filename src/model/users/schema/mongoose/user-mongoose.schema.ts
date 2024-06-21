@@ -3,7 +3,8 @@ import { Document } from 'mongoose';
 
 export type UserDocument = User & Document;
 
-@Schema({ _id: false })
+// Schema definitions for Mongoose
+@Schema({ _id: false, strict: true })
 class Geo {
   @Prop()
   lat: string;
@@ -14,7 +15,7 @@ class Geo {
 
 const GeoSchema = SchemaFactory.createForClass(Geo);
 
-@Schema({ _id: false })
+@Schema({ _id: false, strict: true })
 class Address {
   @Prop()
   street: string;
@@ -34,7 +35,7 @@ class Address {
 
 const AddressSchema = SchemaFactory.createForClass(Address);
 
-@Schema({ _id: false })
+@Schema({ _id: false, strict: true })
 class Company {
   @Prop()
   name: string;
@@ -48,7 +49,7 @@ class Company {
 
 const CompanySchema = SchemaFactory.createForClass(Company);
 
-@Schema()
+@Schema({ strict: true })
 export class User {
   @Prop()
   id: number;
@@ -77,19 +78,19 @@ export class User {
 
 export const UserSchema = SchemaFactory.createForClass(User);
 
-// Ajuste para eliminar _id y __v al convertir a JSON
+// Setting to remove _id and __v when converting to JSON
 UserSchema.set('toJSON', {
   transform: (doc, ret) => {
-    delete ret._id;
-    delete ret.__v;
+    delete ret._id; // Remove _id field when serializing to JSON
+    delete ret.__v; // Remove __v field when serializing to JSON
     if (ret.address && ret.address.geo) {
-      delete ret.address.geo._id;
+      delete ret.address.geo._id; // Removes _id nested inside address.geo when serializing to JSON
     }
     if (ret.address) {
-      delete ret.address._id;
+      delete ret.address._id; // Remove _id nested inside address when serializing to JSON
     }
     if (ret.company) {
-      delete ret.company._id;
+      delete ret.company._id; // Remove _id nested inside company when serializing to JSON
     }
     return ret;
   },

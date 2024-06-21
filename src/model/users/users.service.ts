@@ -11,22 +11,24 @@ export class UsersService {
 
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
-  async getUser(id: number): Promise<UserInterface> {
-    // Verificar si el usuario ya está en la base de datos
+  async getUserService(id: number): Promise<UserInterface> {
+    // Check if the user is already in the database
     let user = await this.userModel.findOne({ id }).exec();
     if (user) {
-      this.logger.log(`User ${id} retrieved from database`);
+      // Records in the log that the user was retrieved from the database
+      this.logger.log(`USER ${id} RETRIEVED FROM DATABASE`);
       return user;
     }
 
-    // Si no está en la base de datos, obtenerlo de la API externa
+    // If it is not in the database, it gets it from the external API.
     const response = await axios.get(
       `https://jsonplaceholder.typicode.com/users/${id}`,
     );
     user = new this.userModel(response.data);
     await user.save();
 
-    this.logger.log(`User ${id} fetched from API and saved to database`);
+    // Records in the log that the user was retrieved from the API and saved in the database
+    this.logger.log(`USER ${id} FETCHED FROM API AND SAVED TO DATABASE`);
     return user;
   }
 }
