@@ -66,11 +66,5 @@ npm run test:cov
 Run the command to install necessary dependencies:
 
 ```bash
-npm i npm i @colors/colors @nestjs/mongoose mongoose
-```
-
-Run the command to install Dev dependencies:
-
-```bash
-
+npm i npm i @colors/colors @nestjs/mongoose mongoose joi axios class-validator class-transform class-transformer
 ```
